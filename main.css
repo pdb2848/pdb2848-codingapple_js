@@ -49,3 +49,8 @@ div {
     visibility: visible;
     opacity: 1;
 }
+
+.main-bg{
+    background-color: lightgrey;
+    padding: 100px 20px;
+}
