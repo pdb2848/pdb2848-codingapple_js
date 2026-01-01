@@ -61,6 +61,15 @@
 
 
 
+    <div class="alert alert-danger">
+        5초 이내 구매시 사은품 증정
+    </div>
+
+
+    <p>태조 이성계가 태어난 년도는?</p>
+    <input type="text" id="answer">
+    <button id="send-answer">제출</button>
+
 
 
 
@@ -84,53 +93,25 @@
                 alert("아이디 입력 안 함");
                 e.preventDefault();
             }
-            if ($('#pass')[0].val() == ''){
+            if (/\S+@\S+\.\S+/.test($('#email').val())){       
+                alert("이메일 형식 아님");
+                e.preventDefault();
+            }
+            if ($('#pass').val() == ''){
                 alert("비밀번호 입력 안 함");
                 e.preventDefault();
             }
-            if ($('#pass')[0].val().length < 6){              
+            if ($('#pass').val().length < 6){              
                 alert("비밀번호 6자리 이상 입력하세요");
+                e.preventDefault();
+            }
+            if (/[A-Z]/.test($('#pass').val()) == false){              
+                alert("비밀번호 대문자 포함하세요");
                 e.preventDefault();
             }
         });
 
-        //369 게임 과제
-        function game(num){
-            if (num % 9 == 0){
-                console.log('박수x2');
-            }
-            else if (num % 3 == 0){
-                console.log('박수');
-            }
-            else {
-                console.log('통과');
-            }
-        }
-        //합격 여부 과제
-        function pass(score1, score2){
-            if (score1 < 40 || score2 < 40){
-                console.log('불합격')
-            }
-            else if(score1 + score2 < 120)
-            {
-                console.log('불합격')
-            }
-            else{
-                console.log('합격')
-            }
-        }
-        function pass2(score1, score2){
-            if (score1 >= 40 && score2 >= 40 && score1 + score2 >= 120){
-                console.log('합격')
-                
-            }
-            else{
-                console.log('불합격')
-            }
-        }
-
-
-        //badge
+        //다크 모드 badge
         var count = 0;
         $('.badge').on('click', function(){
             count = count + 1
@@ -139,6 +120,37 @@
             }
             else{
                 $('.badge').html('Dark 🔄')
+            }
+        })
+
+        //timeout
+        var tCount = 5;
+
+        setInterval(function(){
+            if (tCount >= 0){
+                console.log(tCount)
+                $('.alert').html(`${tCount}초 이내 구매시 사은품 증정`)
+                //$('.alert').hide()
+                tCount = tCount - 1
+            }        
+            else if (tCount < 0){
+                $('.alert').hide()
+            }
+        }, 1000)
+        
+
+        //변수 과제
+        var qCount = 0;
+        $('#send-answer').on('click', function(){
+            var qAnswer = $('#answer').val()
+            qCount++
+            if (qAnswer == '1335'){
+                alert('성공');
+                console.log(qCount)
+            }
+            else if (qCount >= 3 && qAnswer != '1335'){
+                alert('멍청');
+                console.log(qCount)
             }
         })
 
