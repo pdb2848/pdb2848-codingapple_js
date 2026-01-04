@@ -59,6 +59,27 @@
         <button id="login" class="btn btn-danger">로그인</button>
     </div>
 
+    <div>
+
+    <div style="overflow: hidden;">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="car1-1.png">
+            </div>
+            <div class="slide-box">
+                <img src="car2-1.png">
+            </div>
+            <div class="slide-box">
+                <img src="car3-1.png">
+            </div>
+        </div>
+    </div>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="before">이전</button>
+    <button class="next">다음</button>
+
 
 
     <div class="alert alert-danger">
@@ -137,6 +158,35 @@
                 $('.alert').hide()
             }
         }, 1000)
+
+        //슬라이드 버튼
+        var currentPic = 0;
+        //1번 버튼
+        $('.slide-1').on('click', function(){
+            $('.slide-container').css('transform', 'translateX(0vw)')
+            currentPic = 0
+        })
+        //2번 버튼
+        $('.slide-2').on('click', function(){
+            $('.slide-container').css('transform', 'translateX(-100vw)')
+            currentPic = 1
+        })
+        //3번 버튼
+        $('.slide-3').on('click', function(){
+            $('.slide-container').css('transform', 'translateX(-200vw)')
+            currentPic = 2
+        })
+        //이전 버튼
+        $('.before').on('click', function(){
+            currentPic--
+            $('.slide-container').css('transform', `translateX(${currentPic * -100}vw)`)
+
+        })
+        //다음 버튼
+        $('.next').on('click', function(){
+            currentPic++
+            $('.slide-container').css('transform', `translateX(${currentPic * -100}vw)`)
+        })
         
 
         //변수 과제
