@@ -114,6 +114,12 @@
         $('#close').on('click', function () {
             $('.black-bg').removeClass('show-modal');
         });
+        //검은 배경 클릭 시 modal 창 닫기
+        $('.black-bg').on('click',function(e){
+            if (e.target == e.currentTarget){
+                $('.black-bg').removeClass('show-modal');
+            }
+        })
 
         //navbar 서브메뉴 열고 닫기
         $('.navbar-toggler').on('click', function () {
