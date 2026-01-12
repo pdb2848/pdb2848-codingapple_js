@@ -43,9 +43,6 @@ product_select.on('input', function(){
     }
 })
 
-var testP = '<option>28</option>'
-testP.innerHTML = 'hi'
-document.querySelector('#test').appendChild(testP)
 
 
 
@@ -58,3 +55,51 @@ function openTab(num){
     tabCon.eq(num).addClass('show')
 }
 
+
+
+
+var 출석부 = ['흥민', '영희', '철수', '재석', '철수'];
+
+function 이름찾기(name){
+
+    // for (var i = 0; i < 출석부.length; i++)
+    // {
+    //     if (출석부[i] == name){
+    //         console.log("있음")
+    //     }
+    // }
+    출석부.forEach(function(a){
+        if (a == name){     
+            console.log("있음")
+        }
+    })
+}
+
+function nine(){
+    for (var i = 2; i < 10; i++){
+        for (var j = 1; j < 10; j++){
+            console.log(i * j)
+        }
+    }
+}
+
+function avg(legacy, current){
+    var sum = 0;
+    var result = 0;
+    var last = 0;
+    legacy.forEach(function(a){
+        sum += a;
+    })
+    result = sum / legacy.length
+    if (result > current){
+        last = result - current
+        console.log(`평균보다 ${last}점 떨어졌네요 재수 ㄱ`)
+    }
+    else if (result < current){
+        last = current - result
+        console.log(`평균보다 ${last}점 올랐네요 ㅊㅊ`)
+    }
+    else{
+        console.log('평균임')
+    }
+}

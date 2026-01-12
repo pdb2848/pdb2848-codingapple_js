@@ -14,51 +14,66 @@
 
 <body>
 
+    <div class="container">
+        <div class="row">
 
-    <div class="card-group container">
-        <div class="card">
-            <img src="https://placehold.co/600">
-            <div class="card-body">
-                <h5 class="title">Card title</h5>
-                <p class="price">가격 : 70000</p>
-                <button class="btn btn-danger">주문하기</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://placehold.co/600">
-            <div class="card-body">
-                <h5 class="title">Card title</h5>
-                <p class="price">가격 : 70000</p>
-                <button class="btn btn-danger">주문하기</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://placehold.co/600">
-            <div class="card-body">
-                <h5 class="title">Card title</h5>
-                <p class="price">가격 : 70000</p>
-                <button class="btn btn-danger">주문하기</button>
-            </div>
+            <!-- <div class="col-sm-4">
+                <img src="https://placehold.co/600" class="w-100">
+                <h5>Card title</h5>
+                <p>가격 : 70000</p>
+            </div> -->
+
         </div>
     </div>
 
+    <div class="container">
+        <button class="btn btn-danger" id="more">더보기</button>
+    </div>
+
+
+
     <script>
+        //서버 데이터 예시
         var products = [
             { id: 0, price: 70000, title: 'Blossom Dress' },
             { id: 1, price: 50000, title: 'Springfield Shirt' },
             { id: 2, price: 60000, title: 'Black Monastery' }
         ];
 
-        inputData()
+        //서버 데이터 가져온 후 html로 보여주기
+        products.forEach(function (a) {
 
-        function inputData(){
-            for (var i = 0; i < $('.card').length; i++){
-                document.querySelectorAll('.title')[i].innerHTML = products[i]['title']
-                document.querySelectorAll('.price')[i].innerHTML = '가격 : ' + products[i]['price']
-                // $('.title').eq(i).html(products[i]['title'])
-                // $('.price').eq(i).html(products[i]['price'])
-            }
-        }
+            var templete = `<div class="col-sm-4">
+                <img src="https://placehold.co/600" class="w-100">
+                <h5>${a['title']}</h5>
+                <p>가격 : ${a['price']}</p>
+            </div>`
+
+            $('.row').append(templete);
+
+        })
+
+        $('#more').click(function () {
+            $.get("https://codingapple1.github.io/js/more1.json").done(function (data) {
+
+                data.forEach(function (a) {
+                    var templete = `<div class="col-sm-4">
+                        <img src="https://placehold.co/600" class="w-100">
+                        <h5>${a['title']}</h5>
+                        <p>가격 : ${a['price']}</p>
+                        </div>`
+
+                    $('.row').append(templete);
+                })
+
+                console.log(data)
+            })
+        })
+        //더보기 버튼
+
+
+
+
     </script>
 
 
