@@ -76,6 +76,7 @@
                         <img src="https://placehold.co/600" class="w-100">
                         <h5>${a['title']}</h5>
                         <p>가격 : ${a['price']}</p>
+                        <button class="buy">구매</button>
                         </div>`
 
                 $('.row').append(templete);
@@ -121,6 +122,28 @@
             inputData(underArr)
         })
 
+        
+        //구매버튼
+        $('.buy').click(function(){
+            // console.log($(this).siblings('h5').text())
+            // console.log(localStorage.getItem('get')) 
+            var arr 
+            var jArr
+            if (localStorage.getItem('cart') == null){
+                arr = [$(this).siblings('h5').text()]
+                jArr = JSON.stringify(arr)
+                localStorage.setItem('cart', jArr)
+            }
+            else {
+                jArr = localStorage.getItem('cart')
+                arr = JSON.parse(jArr)
+                arr.push($(this).siblings('h5').text())
+                jArr = JSON.stringify(arr)
+                localStorage.setItem('cart', jArr)
+                // console.log(jArr)
+            }
+        })
+        
 
     </script>
 
