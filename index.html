@@ -76,13 +76,13 @@
     <div style="overflow: hidden;">
         <div class="slide-container">
             <div class="slide-box">
-                <img src="car1-1.png">
+                <img src="car1-1.png" draggable="false">
             </div>
             <div class="slide-box">
-                <img src="car2-1.png">
+                <img src="car2-1.png" draggable="false">
             </div>
             <div class="slide-box">
-                <img src="car3-1.png">
+                <img src="car3-1.png" draggable="false">
             </div>
         </div>
     </div>
@@ -204,6 +204,61 @@
         $('.next').on('click', function () {
             currentPic++
             $('.slide-container').css('transform', `translateX(${currentPic * -100}vw)`)
+        })
+
+        //캐러셀 스와이프
+        var startPoint = 0;
+        var isClick = false;
+        $('.slide-box').eq(0).on('mousedown', function(e){
+            startPoint = e.clientX
+            isClick = true
+        })
+        $('.slide-box').eq(0).on('mousemove', function(e){
+            if (isClick == true){
+                $('.slide-container').css('transform', `translateX(${e.clientX - startPoint}px)`)
+            }
+        })
+        $('.slide-box').eq(0).on('mouseup', function(e){
+            isClick = false
+            if (e.clientX - startPoint < -300){
+                $('.slide-container')
+                    .css('transition', 'all 0.5s')
+                    .css('transform', 'translateX(-100vw)')
+            }
+            else{              
+                $('.slide-container')
+                    .css('transition', 'all 0.5s')
+                    .css('transform', 'translateX(0vw)')
+            }
+            setTimeout(()=> {
+                $('.slide-container').css('transition', 'none')
+            }, 500)  
+        })
+        //모바일 버전 케러셀 스와이프
+        $('.slide-box').eq(0).on('touchstart', function(e){
+            startPoint = e.touches[0].clientX
+            isClick = true
+        })
+        $('.slide-box').eq(0).on('touchmove', function(e){
+            if (isClick == true){
+                $('.slide-container').css('transform', `translateX(${e.touches[0].clientX - startPoint}px)`)
+            }
+        })
+        $('.slide-box').eq(0).on('touchend', function(e){
+            isClick = false
+            if (e.changedTouches[0].clientX - startPoint < -100){
+                $('.slide-container')
+                    .css('transition', 'all 0.5s')
+                    .css('transform', 'translateX(-100vw)')
+            }
+            else{              
+                $('.slide-container')
+                    .css('transition', 'all 0.5s')
+                    .css('transform', 'translateX(0vw)')
+            }
+            setTimeout(()=> {
+                $('.slide-container').css('transition', 'none')
+            }, 500)  
         })
 
         //scroll event
