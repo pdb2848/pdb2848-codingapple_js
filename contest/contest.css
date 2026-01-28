@@ -1,0 +1,13 @@
+body {
+    margin: 0px;
+    background-color: #eee;
+}
+div {
+    box-sizing: border-box;
+}
+
+.cart-bg {
+    width: 200px;
+    height: 1000px;
+    background-color: #dedede;
+}
